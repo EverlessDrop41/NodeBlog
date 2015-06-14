@@ -49,8 +49,12 @@ app.use(function (request, res, next) {
 });
 
 app.get('/', function (req, res) {
-  res.render('text-page.swig', {text: '200 OK!'});
+  res.render('text-page.swig', {
+    url_for: url_for,
+    text: '200 OK!'
+  });
 })
 
+require('./routes/routes-api.js')(app, db);
 require('./routes/routes-std.js')(app, url_for);
 require('./routes/routes-blog.js')(app, db, url_for);
