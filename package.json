@@ -1,0 +1,17 @@
+{
+  "name": "node-blog",
+  "version": "0.0.0",
+  "description": "A simple nodejs powered",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "express": "~4.12.4",
+    "swig": "~1.4.2",
+    "body-parser": "~1.12.4",
+    "mongojs": "~1.0.0"
+  }
+}
