@@ -20,6 +20,24 @@ module.exports = function(app, db, url_for) {
     });
   }); //Get a blog
 
+  app.get('/blog', function (req, res) {
+    db.blog.find(function (err, docs) {
+      if (err) {console.error(err);}
+      console.log(docs);
+      if (!docs[0]) {
+        res.render('text-page.swig', {
+          url_for: url_for, 
+          text: 'No blogs found'
+        });
+      } else {
+        res.render('blog-list.swig',{
+          url_for: url_for,
+          blogs: docs
+        });
+      }
+    });
+  }); //Return list of blogs
+
   app.post('/blog', function(req, res) {
     db.blog.insert({
       title: req.body.title,
@@ -27,7 +45,7 @@ module.exports = function(app, db, url_for) {
     }, function(err, data) {
       if (err) {console.error(err);}
       else {
-        res.send(data);
+        res.redirect(url_for('blog/' + req.body.title));
       }
     });
   }); //Post a blog
